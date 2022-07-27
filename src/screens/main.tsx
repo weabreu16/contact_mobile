@@ -13,10 +13,13 @@ function MainScreen(props: any) {
         source={require('../../assets/logo01.png')}
       />
       <Button w="90%" h={50} mb={10} pt={2} pb={2} bg={"red.800"}
-        onPress={() => props.navigation.navigate("Login")}>
+        onPress={() => props.navigation.navigate("Login")}
+      >
         <Text fontWeight="bold" fontSize={15} lineHeight={26} color="white">Log In</Text>
       </Button>
-      <Button w="90%" h={50} mb={10} pt={2} pb={2} bg={"red.800"}>
+      <Button w="90%" h={50} mb={10} pt={2} pb={2} bg={"red.800"}
+        onPress={() => props.navigation.navigate("Signup")}
+      >
         <Text fontWeight="bold" fontSize={15} lineHeight={26} color="white">Sign Up</Text>
       </Button>
     </ImageBackground>

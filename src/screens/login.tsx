@@ -42,7 +42,11 @@ function LoginScreen(props: any) {
       </Button>
       <View style={styles.row}>
         <Text>Don't have an account? </Text>
-        <Text fontWeight="bold" color="blue.900">Sign Up</Text>
+        <Text fontWeight="bold" color="blue.900"
+          onPress={() => props.navigation.navigate("Signup")}
+        >
+          Sign Up
+        </Text>
       </View>
     </ImageBackground>
   )

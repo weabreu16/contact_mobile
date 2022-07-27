@@ -41,7 +41,11 @@ function SignupScreen(props: any) {
       </Button>
       <View style={styles.row}>
         <Text>Already have an account? </Text>
-        <Text fontWeight="bold" color="blue.900">Log In</Text>
+        <Text fontWeight="bold" color="blue.900"
+          onPress={() => props.navigation.navigate("Login")}
+        >
+          Log In
+        </Text>
       </View>
     </ImageBackground>
   )
