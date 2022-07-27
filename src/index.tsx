@@ -1,6 +1,7 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import MainScreen from './screens/main';
+import LoginScreen from './screens/login';
 
 const Drawer = createDrawerNavigator();
 
@@ -13,7 +14,7 @@ function App(props) {
         overlayColor: '#000000'
       }}
     >
-      <Drawer.Screen name="Main" component={MainScreen} />
+      <Drawer.Screen name="Main" component={LoginScreen} />
     </Drawer.Navigator>
   )
 };
