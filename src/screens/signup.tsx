@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { ImageBackground, StyleSheet, View } from 'react-native';
 import { Button, Image, Text } from 'native-base';
 import TextInput from '../components/text_input';
-import theme from '../theme';
 
-function LoginScreen(props: any) {
+function SignupScreen(props: any) {
   const [user, setUser] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
 
@@ -38,15 +37,15 @@ function LoginScreen(props: any) {
         secureTextEntry
       />
       <Button w="90%" h={50} mt={10} mb={10} pt={2} pb={2} bg={"red.800"}>
-        <Text fontWeight="bold" fontSize={15} lineHeight={26} color="white">Log In</Text>
+        <Text fontWeight="bold" fontSize={15} lineHeight={26} color="white">Sign Up</Text>
       </Button>
       <View style={styles.row}>
-        <Text>Don't have an account? </Text>
-        <Text fontWeight="bold" color="blue.900">Sign Up</Text>
+        <Text>Already have an account? </Text>
+        <Text fontWeight="bold" color="blue.900">Log In</Text>
       </View>
     </ImageBackground>
   )
-}
+};
 
 const styles = StyleSheet.create({
   background: {
@@ -61,4 +60,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LoginScreen;
+export default SignupScreen;

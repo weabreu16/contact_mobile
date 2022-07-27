@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Image, Text } from 'native-base';
 import { ImageBackground, StyleSheet } from 'react-native';
 
-function MainScreen(props) {
+function MainScreen(props: any) {
   return (
     <ImageBackground
       source={require('../../assets/background_dot.png')}
@@ -12,11 +12,12 @@ function MainScreen(props) {
       <Image w={320} h={100} mb={8} alt="app logo"
         source={require('../../assets/logo01.png')}
       />
-      <Button w="90%" h={50} mb={10} pt={2} pb={2} bg={"red.800"}>
-        <Text fontWeight="bold" fontSize={15} lineHeight={26} color="white">LogIn</Text>
+      <Button w="90%" h={50} mb={10} pt={2} pb={2} bg={"red.800"}
+        onPress={() => props.navigation.navigate("Login")}>
+        <Text fontWeight="bold" fontSize={15} lineHeight={26} color="white">Log In</Text>
       </Button>
       <Button w="90%" h={50} mb={10} pt={2} pb={2} bg={"red.800"}>
-        <Text fontWeight="bold" fontSize={15} lineHeight={26} color="white">SignUp</Text>
+        <Text fontWeight="bold" fontSize={15} lineHeight={26} color="white">Sign Up</Text>
       </Button>
     </ImageBackground>
   );
