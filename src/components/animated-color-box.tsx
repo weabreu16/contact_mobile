@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box, useTheme, themeTools } from 'native-base';
+import { Box, useTheme, themeTools, useColorModeValue } from 'native-base';
 import usePrevious from '../utils/use_previous';
 import Animated, {
   useSharedValue,
@@ -10,7 +10,8 @@ import Animated, {
 
 const AnimatedBox = Animated.createAnimatedComponent(Box);
 
-function AnimatedColorBox({ bg, ...props }: any) {
+function AnimatedColorBox(props: any) {
+  const bg = useColorModeValue('warmGray.50', 'primary.900');
   const theme = useTheme();
   const hexBg = themeTools.getColor(theme, bg);
   const prevHexBg = usePrevious(hexBg);

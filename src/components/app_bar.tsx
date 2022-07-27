@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { HStack, IconButton, Image, Text, VStack, useColorModeValue } from 'native-base';
+import { HStack, IconButton, Image, StatusBar, Text, VStack, useColorModeValue } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { Feather } from '@expo/vector-icons';
@@ -11,7 +11,8 @@ function AppBar(props: any) {
     navigation.openDrawer();
   }, [navigation]);
 
-  return (
+  return <>
+    <StatusBar barStyle="light-content" />
     <VStack w="full">
       <HStack pl={2} py={0} w="full" justifyContent="space-between" alignContent="center" alignItems="center">
         <IconButton onPress={handlePressMenuButton}
@@ -32,7 +33,7 @@ function AppBar(props: any) {
         </HStack>
       </HStack>
     </VStack>
-  )
+  </>
 };
 
 export default AppBar;
