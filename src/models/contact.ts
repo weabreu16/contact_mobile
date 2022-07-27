@@ -4,7 +4,7 @@ version implemented.
 */
 
 interface Contact {
-  id?: string
+  _id?: string
   name: string
   lastname?: string
   nickname?: string

@@ -4,6 +4,7 @@ import {
   Box,
   HStack,
   Icon,
+  Pressable,
   useTheme,
   themeTools,
   useColorModeValue
@@ -12,12 +13,15 @@ import SwipableView from './swipable_view';
 import { Feather } from '@expo/vector-icons';
 import AnimatedContactName from './animated_contact_name';
 import { PanGestureHandlerProps } from 'react-native-gesture-handler';
+import Contact from '../models/contact';
 
 interface Props extends Pick<PanGestureHandlerProps, 'simultaneousHandlers'> {
+  name: string
+  onPress?: () => void
   onRemove?: () => void
 }
 
-function ContactItem(props: any) {
+function ContactItem(props: Props) {
   const theme = useTheme();
   const activeTextColor = themeTools.getColor(theme, useColorModeValue('darkText', 'lightText'));
 
@@ -30,19 +34,22 @@ function ContactItem(props: any) {
         </Box>
       }
     >
-      <HStack alignItems="center" w="full" px={4} py={2}
-        bg={useColorModeValue('warmGray.50', 'primary.900')}
-      >
-        <Avatar size="md"
-          borderRadius={100}
-          borderColor="red.200"
-          borderWidth={3}
-          source={require('../../assets/1.jpg')}
-        />
-        <AnimatedContactName>
-          Task Item
-        </AnimatedContactName>
-      </HStack>
+      <Pressable
+        onPress={props.onPress}>
+        <HStack alignItems="center" w="full" px={4} py={2}
+          bg={useColorModeValue('warmGray.50', 'primary.900')}
+        >
+          <Avatar size="md"
+            borderRadius={100}
+            borderColor="red.200"
+            borderWidth={3}
+            source={require('../../assets/1.jpg')}
+          />
+          <AnimatedContactName>
+            {props.name}
+          </AnimatedContactName>
+        </HStack>
+      </Pressable>
     </SwipableView>
   )
 };
