@@ -10,7 +10,7 @@ const Drawer = createDrawerNavigator();
 
 function App(props: any) {
   return (
-    <Drawer.Navigator initialRouteName="ContactForm"
+    <Drawer.Navigator initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         drawerType: 'back',

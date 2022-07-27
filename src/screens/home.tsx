@@ -1,7 +1,10 @@
 import React, { useCallback, useState } from 'react';
-import { Center, Text, VStack } from 'native-base';
+import { Fab, Icon, VStack } from 'native-base';
+import { Feather } from '@expo/vector-icons';
 import ContactList from '../components/contact_list';
 import Contact from '../models/contact';
+import AnimatedColorBox from '../components/animated-color-box';
+import AppBar from '../components/app_bar';
 
 const initialData = [
   {
@@ -29,14 +32,22 @@ function HomeScreen(props: any) {
   }, []);
 
   return (
-    <Center _dark={{ bg: 'blueGray.900' }} _light={{ bg: 'blueGray.50' }} px={4} flex={1}>
+    <AnimatedColorBox flex={1} w="full">
+      <AppBar imgSource={require('../../assets/user.png')}
+        screenText="Contacts"
+      />
       <VStack w="full" space={5} alignItems="center">
         <ContactList data={data}
           onPressItem={handlePressItem}
           onRemoveItem={handleRemoveItem}
         />
       </VStack>
-    </Center>
+      <Fab position="absolute" renderInPortal={false} size="lg"
+        icon={<Icon color="white" as={<Feather name="plus" />} size="lg" />}
+        bg="red.800"
+        onPress={() => props.navigation.navigate("ContactForm")}
+      />
+    </AnimatedColorBox>
   )
 };
 
