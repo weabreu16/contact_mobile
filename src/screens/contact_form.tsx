@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Avatar, Fab, HStack, Icon, VStack, useColorModeValue } from 'native-base';
+import { Avatar, Fab, HStack, Icon, Pressable, VStack } from 'native-base';
 import ContactFormInput from '../components/contact_form_input';
 import { MaterialIcons, Feather } from '@expo/vector-icons';
 import AppBar from '../components/app_bar';
 import AnimatedColorBox from '../components/animated-color-box';
+import * as ImagePicker from 'expo-image-picker';
 
 class ContactFormScreen extends React.Component<any, any> {
   constructor(props: any) {
@@ -93,6 +94,28 @@ class ContactFormScreen extends React.Component<any, any> {
     this.toggleEditMode();
   }
 
+  async pickImage() {
+    if (!this.state.editMode) return;
+
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+      base64: true
+    });
+
+    if (!result.cancelled) {
+      this.setState({
+        ...this.state,
+        contact: {
+          ...this.state.contact,
+          image: result.base64
+        }
+      });
+    }
+  }
+
   render() {
     return (
       <AnimatedColorBox flex={1} w="full">
@@ -105,12 +128,16 @@ class ContactFormScreen extends React.Component<any, any> {
         />
         <VStack w="full">
           <HStack alignItems="center" pl={2}>
-            <Avatar size="2xl"
-              borderRadius={100}
-              borderColor="red.800"
-              borderWidth={4}
-              source={require('../../assets/1.jpg')}
-            />
+            <Pressable onPress={() => this.pickImage()}>
+              <Avatar size="2xl"
+                borderRadius={100}
+                borderColor="red.800"
+                borderWidth={4}
+                source={!this.state.contact.image ? require('../../assets/1.jpg')
+                  : { uri: `data:image/png;base64,${this.state.contact.image}` }
+                }
+              />
+            </Pressable>
             <VStack w="67%" px={3}>
               <ContactFormInput label="Name"
                 value={this.state.contact.name}
