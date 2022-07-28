@@ -1,5 +1,6 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
 import MainScreen from './screens/main';
 import LoginScreen from './screens/login';
 import SignupScreen from './screens/signup';
@@ -7,21 +8,40 @@ import HomeScreen from './screens/home';
 import ContactFormScreen from './screens/contact_form';
 
 const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
+
+const screenOptions: any = {
+  headerShown: false,
+  drawerType: 'back',
+  overlayColor: '#000000'
+};
+
+function MainNavigator(props: any) {
+  return (
+    <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Screen name="Main" component={MainScreen} />
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Signup" component={SignupScreen} />
+    </Stack.Navigator>
+  )
+}
+
+function HomeNavigator(props: any) {
+  return (
+    <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="ContactForm" component={ContactFormScreen} />
+    </Stack.Navigator>
+  )
+}
 
 function App(props: any) {
   return (
-    <Drawer.Navigator initialRouteName="Home"
-      screenOptions={{
-        headerShown: false,
-        drawerType: 'back',
-        overlayColor: '#000000'
-      }}
+    <Drawer.Navigator initialRouteName="HomeNav"
+      screenOptions={screenOptions}
     >
-      <Drawer.Screen name="Main" component={MainScreen} />
-      <Drawer.Screen name="Login" component={LoginScreen} />
-      <Drawer.Screen name="Signup" component={SignupScreen} />
-      <Drawer.Screen name="Home" component={HomeScreen} />
-      <Drawer.Screen name="ContactForm" component={ContactFormScreen} />
+      <Drawer.Screen name="MainNav" component={MainNavigator} />
+      <Drawer.Screen name="HomeNav" component={HomeNavigator} />
     </Drawer.Navigator>
   )
 };
