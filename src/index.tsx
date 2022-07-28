@@ -6,6 +6,7 @@ import LoginScreen from './screens/login';
 import SignupScreen from './screens/signup';
 import HomeScreen from './screens/home';
 import ContactFormScreen from './screens/contact_form';
+import Sidebar from './components/side_bar';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -39,6 +40,7 @@ function App(props: any) {
   return (
     <Drawer.Navigator initialRouteName="HomeNav"
       screenOptions={screenOptions}
+      drawerContent={props => <Sidebar {...props} />}
     >
       <Drawer.Screen name="MainNav" component={MainNavigator} />
       <Drawer.Screen name="HomeNav" component={HomeNavigator} />

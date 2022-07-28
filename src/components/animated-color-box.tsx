@@ -11,7 +11,7 @@ import Animated, {
 const AnimatedBox = Animated.createAnimatedComponent(Box);
 
 function AnimatedColorBox(props: any) {
-  const bg = useColorModeValue('warmGray.50', 'primary.900');
+  const bg = props.bg ? props.bg : useColorModeValue('warmGray.50', 'primary.900');
   const theme = useTheme();
   const hexBg = themeTools.getColor(theme, bg);
   const prevHexBg = usePrevious(hexBg);
