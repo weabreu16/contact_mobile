@@ -74,7 +74,7 @@ class ContactFormScreen extends React.Component<any, any> {
   }
 
   async handleUpdateContact() {
-    console.log("Update")
+    await updateContact(this.state.contact);
   }
 
   async handlePressedFloatingButton() {
@@ -188,7 +188,7 @@ class ContactFormScreen extends React.Component<any, any> {
         </VStack>
         <Fab position="absolute" renderInPortal={false} size="lg"
           icon={<Icon color="white"
-            as={<Feather name={this.state.contact._id ? 'edit-2' : 'save'} />}
+            as={<Feather name={this.state.contact._id && !this.state.editMode ? 'edit-2' : 'save'} />}
             size="lg"
           />}
           bg="red.800"

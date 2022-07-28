@@ -2,10 +2,19 @@ import React, { useState } from 'react';
 import { ImageBackground, StyleSheet, View } from 'react-native';
 import { Button, Image, Text } from 'native-base';
 import TextInput from '../components/text_input';
+import { signup } from '../services/user.service';
 
 function SignupScreen(props: any) {
   const [user, setUser] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
+
+  const handleSignup = async () => {
+    if (!user.value || !password.value) return;
+
+    await signup(user.value, password.value);
+
+    props.navigation.navigate("Login");
+  }
 
   return (
     <ImageBackground
@@ -36,7 +45,9 @@ function SignupScreen(props: any) {
         errorText={password.error}
         secureTextEntry
       />
-      <Button w="90%" h={50} mt={10} mb={10} pt={2} pb={2} bg={"red.800"}>
+      <Button w="90%" h={50} mt={10} mb={10} pt={2} pb={2} bg={"red.800"}
+        onPress={() => handleSignup()}
+      >
         <Text fontWeight="bold" fontSize={15} lineHeight={26} color="white">Sign Up</Text>
       </Button>
       <View style={styles.row}>
