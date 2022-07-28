@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ImageBackground, StyleSheet, View } from 'react-native';
 import { Button, Image, Text } from 'native-base';
 import TextInput from '../components/text_input';
-import theme from '../theme';
 
 function LoginScreen(props: any) {
   const [user, setUser] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
+
+  const handleLogin = useCallback(() => {
+    props.navigation.navigate("Feature");
+  }, []);
 
   return (
     <ImageBackground
@@ -37,7 +40,8 @@ function LoginScreen(props: any) {
         errorText={password.error}
         secureTextEntry
       />
-      <Button w="90%" h={50} mt={10} mb={10} pt={2} pb={2} bg={"red.800"}>
+      <Button w="90%" h={50} mt={10} mb={10} pt={2} pb={2} bg={"red.800"}
+        onPress={handleLogin}>
         <Text fontWeight="bold" fontSize={15} lineHeight={26} color="white">Log In</Text>
       </Button>
       <View style={styles.row}>

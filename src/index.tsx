@@ -18,16 +18,6 @@ const screenOptions: any = {
   overlayColor: '#000000'
 };
 
-function MainNavigator(props: any) {
-  return (
-    <Stack.Navigator screenOptions={screenOptions}>
-      <Stack.Screen name="Main" component={MainScreen} />
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Signup" component={SignupScreen} />
-    </Stack.Navigator>
-  )
-}
-
 function HomeNavigator(props: any) {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
@@ -37,17 +27,27 @@ function HomeNavigator(props: any) {
   )
 }
 
-function App(props: any) {
+function FeatureNavigator(props: any) {
   return (
     <Drawer.Navigator initialRouteName="HomeNav"
       screenOptions={screenOptions}
       drawerContent={props => <Sidebar {...props} />}
     >
-      <Drawer.Screen name="MainNav" component={MainNavigator} />
       <Drawer.Screen name="HomeNav" component={HomeNavigator} />
       <Drawer.Screen name="About" component={AboutScreen} />
     </Drawer.Navigator>
-  )
+  );
+}
+
+function App(props: any) {
+  return (
+    <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Screen name="Main" component={MainScreen} />
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Signup" component={SignupScreen} />
+      <Stack.Screen name="Feature" component={FeatureNavigator} />
+    </Stack.Navigator>
+  );
 };
 
 export default App;
