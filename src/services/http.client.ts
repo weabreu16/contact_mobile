@@ -33,4 +33,4 @@ export async function remove(url: string, requestOptions: any = undefined): Prom
   return { data: response.data, statusCode: response.status }
 }
 
-export default const http = { get, post, patch, remove };
+export default const http = { get, post, patch, delete: remove };
