@@ -14,9 +14,11 @@ import { Feather } from '@expo/vector-icons';
 import AnimatedContactName from './animated_contact_name';
 import { PanGestureHandlerProps } from 'react-native-gesture-handler';
 import Contact from '../models/contact';
+import { ImageSourcePropType } from 'react-native';
 
 interface Props extends Pick<PanGestureHandlerProps, 'simultaneousHandlers'> {
   name: string
+  image: ImageSourcePropType
   onPress?: () => void
   onRemove?: () => void
 }
@@ -43,7 +45,7 @@ function ContactItem(props: Props) {
             borderRadius={100}
             borderColor="red.200"
             borderWidth={3}
-            source={require('../../assets/1.jpg')}
+            source={props.image}
           />
           <AnimatedContactName>
             {props.name}

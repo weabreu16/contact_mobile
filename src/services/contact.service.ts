@@ -45,7 +45,7 @@ export async function removeContact(id: string) {
 
   const requestOptions = await prepareHeaderWithToken();
 
-  const response = await http.delete(`${constants.apiUrl}/contacts/${id}`, requestOptions);
+  const response = await http.remove(`${constants.apiUrl}/contacts/${id}`, requestOptions);
 
   return response === 200;
 }

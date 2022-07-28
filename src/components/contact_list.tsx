@@ -36,6 +36,9 @@ export function AnimatedContactItem(props: ContactItemProps) {
       exit={{ opacity: 0, scale: 0.5, marginBottom: -46 }}
     >
       <ContactItem name={props.data.name}
+        image={props.data.image ? { uri: `data:image/png;base64,${props.data.image}` }
+          : require('../../assets/1.jpg')
+        }
         onPress={handlePress}
         onRemove={handleRemove}
       />

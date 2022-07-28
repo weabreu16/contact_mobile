@@ -1,35 +1,39 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Fab, Icon, VStack } from 'native-base';
 import { Feather } from '@expo/vector-icons';
 import ContactList from '../components/contact_list';
 import Contact from '../models/contact';
 import AnimatedColorBox from '../components/animated-color-box';
 import AppBar from '../components/app_bar';
-
-const initialData = [
-  {
-    _id: "1",
-    name: "Pablo"
-  },
-  {
-    _id: "2",
-    name: "Juan"
-  }
-]
+import { getContacts, removeContact } from '../services/contact.service';
 
 function HomeScreen(props: any) {
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState([]);
 
   const handlePressItem = useCallback((item: Contact) => {
-    console.log(item);
+    props.navigation.navigate("ContactForm", { contact: item });
   }, []);
 
-  const handleRemoveItem = useCallback((item: Contact) => {
+  const handleRemoveItem = useCallback(async (item: Contact) => {
+    await removeContact(item._id!);
+
     setData((prevData: any) => {
       const newData = prevData.filter((i: Contact) => i !== item);
       return newData;
     });
   }, []);
+
+  useEffect(() => {
+
+    const fetchContactsData = async () => {
+      const contactData = await getContacts();
+
+      setData(contactData);
+    }
+
+    fetchContactsData();
+
+  }, [getContacts]);
 
   return (
     <AnimatedColorBox flex={1} w="full">

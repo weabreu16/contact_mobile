@@ -18,4 +18,6 @@ export async function removeData(key: string) {
   await AsyncStorage.removeItem(key);
 }
 
-export default const StoreManager = { storeData, getData, removeData };
+const StoreManager = { storeData, getData, removeData };
+
+export default StoreManager;
