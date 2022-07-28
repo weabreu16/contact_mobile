@@ -2,12 +2,17 @@ import React, { useCallback, useState } from 'react';
 import { ImageBackground, StyleSheet, View } from 'react-native';
 import { Button, Image, Text } from 'native-base';
 import TextInput from '../components/text_input';
+import { login } from '../services/user.service';
 
 function LoginScreen(props: any) {
   const [user, setUser] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
 
-  const handleLogin = useCallback(() => {
+  const handleLogin = useCallback(async () => {
+    if (!user.value || !password.value) return;
+
+    await login(user.value, password.value);
+
     props.navigation.navigate("Feature");
   }, []);
 
