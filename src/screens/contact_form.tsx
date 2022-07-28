@@ -6,6 +6,7 @@ import { MaterialIcons, Feather } from '@expo/vector-icons';
 import AppBar from '../components/app_bar';
 import AnimatedColorBox from '../components/animated-color-box';
 import * as ImagePicker from 'expo-image-picker';
+import { addContact, updateContact } from '../services/contact.service';
 
 class ContactFormScreen extends React.Component<any, any> {
   constructor(props: any) {
@@ -67,7 +68,9 @@ class ContactFormScreen extends React.Component<any, any> {
   }
 
   async handleAddContact() {
-    console.log("Add")
+    await addContact(this.state.contact);
+
+    this.props.navigation.navigate("Home");
   }
 
   async handleUpdateContact() {

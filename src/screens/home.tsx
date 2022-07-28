@@ -33,7 +33,7 @@ function HomeScreen(props: any) {
 
     fetchContactsData();
 
-  }, [getContacts]);
+  }, [data, getContacts]);
 
   return (
     <AnimatedColorBox flex={1} w="full">
