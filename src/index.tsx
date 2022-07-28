@@ -6,6 +6,7 @@ import LoginScreen from './screens/login';
 import SignupScreen from './screens/signup';
 import HomeScreen from './screens/home';
 import ContactFormScreen from './screens/contact_form';
+import AboutScreen from './screens/about';
 import Sidebar from './components/side_bar';
 
 const Drawer = createDrawerNavigator();
@@ -44,6 +45,7 @@ function App(props: any) {
     >
       <Drawer.Screen name="MainNav" component={MainNavigator} />
       <Drawer.Screen name="HomeNav" component={HomeNavigator} />
+      <Drawer.Screen name="About" component={AboutScreen} />
     </Drawer.Navigator>
   )
 };

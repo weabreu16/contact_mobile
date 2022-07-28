@@ -24,7 +24,7 @@ function AppBar(props: any) {
           size={100} alt="logo" resizeMode="contain" source={require('../../assets/logo01.png')}
         />
       </HStack>
-
+      {props.imgSource && props.screenText && (
       <HStack w="full" bg="#ffa588" p={0} h={45}>
         <HStack position="absolute" left={10} bottom={2}>
           <Image source={props.imgSource} alt="Screen Img" size={25} />
@@ -32,6 +32,7 @@ function AppBar(props: any) {
           <Text fontSize={17} pl={2}>{props.screenText}</Text>
         </HStack>
       </HStack>
+      )}
     </VStack>
   </>
 };
