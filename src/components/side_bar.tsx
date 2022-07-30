@@ -15,7 +15,7 @@ import ThemeToggle from './theme_toggle';
 import { Feather } from '@expo/vector-icons';
 import MenuButton from './menu_button';
 import * as ImagePicker from 'expo-image-picker';
-import { logout, getUserData } from '../services/user.service';
+import { logout, getUserData, updateImage } from '../services/user.service';
 
 function Sidebar(props: DrawerContentComponentProps) {
   const currentRoute = props.state.routeNames[props.state.index];
@@ -50,17 +50,29 @@ function Sidebar(props: DrawerContentComponentProps) {
 
     if (!result.cancelled) {
       setImage(result.base64!);
+      await handleImageChange(result.base64!);
     }
   }, []);
+
+  const handleImageChange = async (image64: string) => {
+    try {
+      await updateImage(image64);
+    } catch(e) {
+      console.log((e as Error).message);
+    }
+  }
 
   useEffect(() => {
     const fetchUserData = async () => {
       const userData = await getUserData();
 
       setUsername(userData.username);
+      setImage(userData.image);
     }
 
-    fetchUserData(); 
+    fetchUserData();
+
+    return () => console.log("Close");
   }, []);
 
   return (

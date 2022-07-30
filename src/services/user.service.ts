@@ -30,6 +30,15 @@ export async function getUserData() {
   return response.data;
 }
 
+export async function updateImage(image: string) {
+
+  const requestOptions = await prepareHeaderWithToken();
+
+  let response = await http.patch(`${constants.apiUrl}/users/image`, { image }, requestOptions);
+
+  return response.data;
+}
+
 const UserService = { login, signup, logout, getUserData };
 
 export default UserService;

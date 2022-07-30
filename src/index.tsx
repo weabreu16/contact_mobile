@@ -8,6 +8,7 @@ import HomeScreen from './screens/home';
 import ContactFormScreen from './screens/contact_form';
 import AboutScreen from './screens/about';
 import Sidebar from './components/side_bar';
+import TestScreen from './screens/test';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -46,6 +47,7 @@ function App(props: any) {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
       <Stack.Screen name="Feature" component={FeatureNavigator} />
+      <Stack.Screen name="Test" component={TestScreen} />
     </Stack.Navigator>
   );
 };
